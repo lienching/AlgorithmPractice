@@ -6,24 +6,21 @@ using namespace std;
 
 class Node{
 public:
-	// initialize
-	Node(int data=0): _data(data){
-		_child.clear();
+	Node(int data=0): data(data){
+		child.clear();
 	}
-	// print the data
 	void printData() const {
-		cout << _data << " ";
+		cout << data << " ";
 	}
 	
-	// they should better be private
-	int           _data;
-	vector<Node*> _child;
+	int data;
+	vector<Node*> child;
 };
 
 void dfs(Node* node){
 	node->printData();
-	for(int i=0; i<node->_child.size(); ++i)
-		dfs(node->_child[i]);
+	for(int i=0; i<node->child.size(); ++i)
+		dfs(node->child[i]);
 }
 
 void bfs(Node* root){
@@ -35,8 +32,8 @@ void bfs(Node* root){
 		Node* tmp = queue.front();
 		queue.pop();
 		tmp->printData();
-		for(int i=0; i<tmp->_child.size(); ++i)
-			queue.push(tmp->_child[i]);
+		for(int i=0; i<tmp->child.size(); ++i)
+			queue.push(tmp->child[i]);
 	}
 }
 
@@ -51,11 +48,11 @@ int main(){
 	node5 = new Node(5);
 	node6 = new Node(6);
 	
-	root->_child.push_back(node2);
-	root->_child.push_back(node3);
-	node2->_child.push_back(node4);
-	node2->_child.push_back(node5);
-	node3->_child.push_back(node6);
+	root->child.push_back(node2);
+	root->child.push_back(node3);
+	node2->child.push_back(node4);
+	node2->child.push_back(node5);
+	node3->child.push_back(node6);
 	
 	// DFS
 	cout << "DFS: ";
